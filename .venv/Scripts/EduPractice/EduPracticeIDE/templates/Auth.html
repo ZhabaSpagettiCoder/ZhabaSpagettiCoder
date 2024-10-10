@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Страница аутентификации</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(to bottom right, #a8d8ea, #6cb2eb);
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 50%;
+            padding: 10px;
+            background-color: #6cb2eb;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #5a9bd2;
+        }
+        .links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .tooltip .tooltip-content {
+            display: none;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 10px;
+            z-index: 1;
+            width: 300px;
+        }
+
+        .tooltip:hover .tooltip-content {
+            display: block;
+        }
+
+        .video {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="color: #6cb2eb"> 
+        <h2>Вход</h2>
+        <form method="post" action="AuthTry"> 
+            {% csrf_token %}
+            <input name="login" type="text" placeholder="Логин" required>
+            <input name="pass" type="password" placeholder="Пароль" required>
+            <button type="submit" value="Send">Войти</button>
+        </form>
+        <!--            <div class="tooltip">
+            <div class="tooltip-content">
+                <video class="video" controls preload="auto">
+                    <source src = "{{MEDIA_URL}}/support.mp4", type="video/mp4">
+                </video>
+            </div>
+            Служба поддержки
+        </div>
+        -->
+        <div class="links">
+            <a href="Reg/" style="color: #6cb2eb;">Регистрация</a>
+            <abbr title="Обратитесь в службу поддержки эшкерп фром краков. Да, да, я вас слушаю" style="color: #6cb2eb;">Забыли пароль?</abbr>
+        </div>
+    </div>
+</body>
+
+</html>

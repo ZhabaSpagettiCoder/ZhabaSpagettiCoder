@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Окно обработки заявок</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(to bottom right, #a8d8ea, #6cb2eb);
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 1400px;
+            height: 400px;
+        }
+        .user-info {
+            flex: 1;
+            padding: 20px;
+            border-right: 1px solid #ccc;
+        }
+        .user-info h3 {
+            margin-top: 0;
+        }
+        .data-grid {
+            overflow: auto;
+            flex: 3;
+            padding: 30px;
+            border-style:groove;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        button {
+            margin-top: 1px;
+            padding: 8px;
+            background-color: #6cb2eb;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #5a9bd2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="user-info">
+            {% csrf_token %}
+            <h3>Информация о пользователе</h3>
+            <p><strong>ФИО:</strong> {{ FIO }}</p>
+            <p><strong>Номер телефона:</strong> {{ Phone }}</p>
+            <p><strong>Почта:</strong> {{ Email }}</p>
+			<p><strong>Тип профиля:</strong> {{ Type }}<p>
+        </div>
+        <div class="data-grid">
+            <h3>Заявки</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Номер заявки в базе</th>
+                        <th>Дата создания заявки</th>
+						<th>Описание проблемы</th>
+                        <th>Статус выполнения</th>
+                        <th>Техника</th>
+                        <th><abbr text="yas">Дата завершения</abbr></th>
+                        <th>Детали для починки</th>
+                        <th>Назначеный мастер</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for iter in request %}
+                    <tr>
+                        {% for dat in iter %}
+                        <td>{{ dat }}</td>
+                        {% endfor %} 
+                    </tr>
+                    {% endfor %} 
+                    <!-- Добавьте больше строк по необходимости -->
+                </tbody>
+            </table>
+            <form method="post" action="Add">
+                {% csrf_token %}
+            <button type="submit" style = "margin: 10px">Создать новую заявку </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

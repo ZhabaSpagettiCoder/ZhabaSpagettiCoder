@@ -1,0 +1,1 @@
+INSERT INTO InputDataRequests VALUES(0, "21.01.2024", "Computer suddenly turn off", "In progress", 0, "25.01.2024", "Intel I7-7440K", "AAA", "AAB")

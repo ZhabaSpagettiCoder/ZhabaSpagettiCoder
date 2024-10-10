@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заявки</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            height: 100vh;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        input {border-style: none;}
+        th {
+            background-color: #f2f2f2;
+        }
+        .hidden {
+            display: none;
+        }
+        .details {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="details" class="details">
+    <h2>Развёрнутая информация о заявке</h2>
+    <form method="post" action="Delete\?id={{ request }}">    
+        {% csrf_token %}
+        <button type="submit">Удалить</button>
+    </form>
+    <form method="post" action="Server">
+        {% csrf_token %}
+    <button type="submit">Отправить изменения</button>
+    <table>
+        <tr>
+            <th>Номер заявки</th>
+            <td><input type="text" name="request" value="{{ request }}" readonly></td>
+        </tr>
+        <tr>
+            <th>Дата создания заявки</th>
+            <td><input type="text" name="creationDate" value="{{ date }}"></td>
+        </tr>
+        <tr>
+            <th>Комментарий о поломке</th>
+            <td><input type="text" name="comment" value="{{ comment }}"></td>
+        </tr>
+        <tr>
+            <th>Техника</th>
+            <td><input type="text" name="equipment" value="{{ tech }}" readonly></td>
+        </tr>
+        <tr>
+            <th>Статус выполнения</th>
+            <td><input type="text" name="status" value="{{ status }}"></td>
+        </tr>
+        <tr>
+            <th>Дата выполнения заявки</th>
+            <td><input type="text" name="completionDate" value="{{ enddate }}"></td>
+        </tr>
+        <tr>
+            <th>Детали, необходимые для почиинки</th>
+            <td><input type="text" name="parts" value="{{ parts }}"></td>
+        </tr>
+        <tr>
+            <th>ID Техника</th>
+            <td><input type="text" name="idmaster" value="{{ masterID }}"></td>
+        </tr>
+        <tr>
+            <th>ID Пользователя</th>
+            <td><input type="text" name="iduser" value="{{ clientID }}"></td>
+        </tr>
+    </form>
+    </table>
+</div>
