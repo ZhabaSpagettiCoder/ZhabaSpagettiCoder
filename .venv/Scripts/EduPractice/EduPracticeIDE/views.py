@@ -24,7 +24,7 @@ def advancedUwU(request):
         return HttpResponse(f"<p><b>My horse is {Did}<b><p> <p><h1>but..<h1><p> <p><b>your horse is {Hd}<b><p>")
     else:
         return HttpResponseBadRequest("Bad entered data, please, try later") #Возвращает ошибку типа 400
-        #https://metanit.com/python/django/3.5.php - все виды ошибок
+    #https://metanit.com/python/django/3.5.php - все виды ошибок
 
 def noncluded(request):
     return HttpResponse(F"Ещё не вложеное")
@@ -98,7 +98,7 @@ def Menu(request):
             reqL.append(drop)
         return render(request, "AdminPanel.html", context={"FIO":Data[0], "Phone":Data[1],"Email":Data[2],"Type": "Администратор","request":reqL})
     else: return HttpResponse("Error")
-         
+        
 def AuthTry(request):
     pasw = request.POST.get('pass')
     Login = request.POST.get("login")
@@ -141,13 +141,13 @@ def DBAddAdminResponse(request):
     Techid = Techt(id = list(Techt.objects.filter(orgtechtype = ty, orgtechmodel = na).values_list()[0])[0])
     print(Techid, usr.ID)
     NewRequest = Inputdatarequests.objects.create(startdate = datetime.date.today(),
-                                                  problemdescryption = de,
-                                                  requeststatus = stts, 
-                                                  techid = Techid, 
-                                                  completiondate = dt, 
-                                                  repairparts = prt, 
-                                                  clientid = idc, 
-                                                  masterid = idm)
+                            problemdescryption = de,
+                            requeststatus = stts, 
+                            techid = Techid, 
+                            completiondate = dt, 
+                            repairparts = prt, 
+                            clientid = idc, 
+                            masterid = idm)
     print(NewRequest)
     return HttpResponse("Your request is now in proceed")
 
@@ -163,13 +163,13 @@ def DBAddResponse(request):
     Techid = Techt(id = list(Techt.objects.filter(orgtechtype = ty, orgtechmodel = na).values_list()[0])[0])
     print(Techid, usr.ID)
     NewRequest = Inputdatarequests.objects.create(startdate = datetime.date.today(),
-                                                  problemdescryption = de,
-                                                  requeststatus = "Регистрация заявки", 
-                                                  techid = Techid, 
-                                                  completiondate = None, 
-                                                  repairparts = None, 
-                                                  clientid = usr.ID, 
-                                                  masterid = usr.ID)
+                            problemdescryption = de,
+                            requeststatus = "Регистрация заявки", 
+                            techid = Techid, 
+                            completiondate = None, 
+                            repairparts = None, 
+                            clientid = usr.ID, 
+                            masterid = usr.ID)
     print(NewRequest)
     return HttpResponse("Your request is now in proceed")
 
